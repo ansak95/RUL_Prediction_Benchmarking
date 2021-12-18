@@ -54,7 +54,7 @@ def gen_Y_sequence(id_df, seq_length, seq_cols, timesteps_pred, type_data = None
    
 def get_dataset(sequence_length, batch_size):
     # set folder path
-    folder = 'data'
+    folder = '../../data'
     fd = folder
     fd_km = fd
 
