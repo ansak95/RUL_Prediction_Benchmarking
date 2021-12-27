@@ -27,10 +27,6 @@ tf.random.set_seed(1)
 
 #prepare forecasting data
 def gen_X_sequence(id_df, seq_length, seq_cols, timesteps_pred, type_data = None):
-    """ Only sequences that meet the window-length are considered, no padding is used. This means for testing
-    we need to drop those which are below the window-length. An alternative would be to pad sequences so that
-    we can use shorter ones """
-
     ind_start = 0
     
     data_array = id_df[seq_cols].values
@@ -40,10 +36,6 @@ def gen_X_sequence(id_df, seq_length, seq_cols, timesteps_pred, type_data = None
  
 
 def gen_Y_sequence(id_df, seq_length, seq_cols, timesteps_pred, type_data = None):
-    """ Only sequences that meet the window-length are considered, no padding is used. This means for testing
-    we need to drop those which are below the window-length. An alternative would be to pad sequences so that
-    we can use shorter ones """
-
     ind_start = 0
     
     data_array = id_df[seq_cols].values
@@ -59,9 +51,11 @@ def get_dataset(sequence_length, batch_size):
     fd_km = fd
 
     # import data
-    data_train_df = pd.read_pickle(fd_km + '/data_train_v1').reset_index().iloc[:,1:] #full set # The folder has to be changed to the location of the training set
-    data_test_df = pd.read_pickle(fd_km + '/data_test_v1').reset_index().iloc[:,1:] # The folder has to be changed to the location of the testing set
-
+    data_train_df = pd.read_pickle('data_train').reset_index().iloc[:,1:] #full set # The folder has to be changed to the location of the training set
+    data_val = pd.read_pickle('data_val').reset_index().iloc[:,1:]
+    data_test = pd.read_pickle('data_test').reset_index().iloc[:,1:] 
+    
+    
     # create bins
     l = 0.5
     nb_bins = 20 # including one extra bin for RUL>upper_bin_bound
@@ -69,18 +63,15 @@ def get_dataset(sequence_length, batch_size):
     upper_bin_bound = 80000
 
     bins = np.linspace(lower_bin_bound**l, upper_bin_bound**l, nb_bins)**(1/l)
-    bins = np.append(bins, data_train_df.RUL.max())
-
     labels=[i for i in range(bins.shape[0]-1)]
 
     # categorise data
     data_train_df['RUL_bin'] = pd.cut(data_train_df['RUL'], bins=bins, labels=labels)
-    data_test_df['RUL_bin'] = pd.cut(data_test_df['RUL'], bins=bins, labels=labels)
+    data_val['RUL_bin'] = pd.cut(data_val['RUL'], bins=bins, labels=labels)
+    data_test['RUL_bin'] = pd.cut(data_test['RUL'], bins=bins, labels=labels)
 
     # build data sequences
     data_train = data_train_df[data_train_df.ID <= 100] # Change this for 100, 500 or 1000 training structures
-    data_val = data_train_df[data_train_df.ID > 9900]
-    data_test = data_test_df
 
     #prepare data
     seq_cols = ['gauge'+str(i) for i in range(1,4)]
