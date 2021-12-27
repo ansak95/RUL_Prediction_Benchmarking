@@ -67,6 +67,7 @@ def get_dataset(sequence_length, batch_size):
 
     # categorise data
     data_train_df['RUL_bin'] = pd.cut(data_train_df['RUL'], bins=bins, labels=labels)
+    data_val['RUL_bin'] = pd.cut(data_val['RUL'], bins=bins, labels=labels)
     data_test['RUL_bin'] = pd.cut(data_test['RUL'], bins=bins, labels=labels)
 
     # build data sequences
