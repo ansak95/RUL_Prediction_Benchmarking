@@ -12,7 +12,7 @@ Reproducible results are possible using the Keras Tensorflow library. This code 
 # Description
 
 The idea behind this project is to benchmark on a fatigue damage prognostics problem the deep learning algorithms most commonly used in Time Series Forecasting : Recurrent Neural Network (RNN), Long short-term memory (LSTM), Gated Recurrent Unit (GRU), 1D-Convolutional Neural Network (CNN), and Temporal Convolutional Network
-(TCN). The main goals of this project can thus be summarized as follows : 
+(TCN). The main goals of this project can be summarized as follows : 
 
 ◦ Propose a framework and code for synthetically generating datasets, simulating the fatigue crack growth that can be used in PHM, allowing to test the Machine Learning techniques (especially Deep Neural Networks) on large amounts of labeled data.
 
