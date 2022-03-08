@@ -21,7 +21,6 @@ of labeled data increases.
 The code used to generate datasets is detailed on the Jupyter Notebook ``GenerateSet.ipynb``, and the saved models with the training codes for the methods are available on the ``models`` directory. 
 
 
-
 # Acknowledgements
 
 ◦ This work was partially funded by Occitanie region under the Predict project. This funding is gratefully acknowledged. 
