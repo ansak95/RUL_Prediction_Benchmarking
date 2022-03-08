@@ -18,7 +18,7 @@ The idea behind this project is to benchmark on a fatigue damage prognostics pro
 ◦ Benchmark several Deep Learning approaches in terms of their performance, investigating in particular the variation of their performance when the amount
 of labeled data increases.
 
-The code used to generate datasets is detailed on the Jupyter Notebook ``GenerateSet.ipynb``, and the saved models with the training codes for the methods are available on the ``models`` directory. 
+The saved models with the training codes for the methods are available on the ``models`` directory. 
 
 
 # Acknowledgements
