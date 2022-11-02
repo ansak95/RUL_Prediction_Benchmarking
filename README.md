@@ -1,6 +1,6 @@
 # RUL_Prediction_Benchmarking
 
-Deep Learning in Time Series Forecasting
+Deep Learning Benchmarking in Time Series Forecasting
 
 # Setup
 
